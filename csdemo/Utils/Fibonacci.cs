@@ -19,7 +19,7 @@ namespace csdemo.Utils
 
         }
 
-        public static int calculate(int n)
+        public int calculate(int n)
         {
             int a = 0;
             int b = 1;
