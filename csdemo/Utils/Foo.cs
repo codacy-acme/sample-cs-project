@@ -5,7 +5,7 @@ namespace csdemo.Utils
 
     public class Foo : Bar
     {
-        string returnSomeVar(){
+        public string returnSomeVar(){
             return this.someVar;
         }
     }
