@@ -13,9 +13,11 @@ namespace csdemo
                 IntPtr dangerousHandle = handle.DangerousGetHandle();
                 int? nullable = null;
                 Console.WriteLine(nullable.Value);
+                IntPtr anotherDangerousHandle = handle.DangerousGetHandle();
             }
             
             Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello there!");
             Environment.Exit(0);
         }
     }
