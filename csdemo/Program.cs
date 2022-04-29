@@ -3,7 +3,8 @@ using System.Runtime.InteropServices;
 
 namespace csdemo
 {
-    class Program //NOSONAR
+    #pragma warning disable S1118
+    class Program
     {
         static void Main(string[] args)
         {
@@ -22,4 +23,5 @@ namespace csdemo
             Environment.Exit(0);
         }
     }
+    #pragma warning restore S1118
 }
