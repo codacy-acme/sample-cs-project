@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace csdemo
 {
-    class Program
+    class Program //NOSONAR
     {
         static void Main(string[] args)
         {
