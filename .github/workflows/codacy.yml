@@ -43,4 +43,4 @@ jobs:
             --volume "$CODACY_CODE":"$CODACY_CODE" \
             --volume /tmp:/tmp \
             codacy/codacy-analysis-cli \
-              analyze --tool pylint --upload --project-token ${{ secrets.CODACY_PROJECT_TOKEN }} --max-allowed-issues 99999 --commit-uuid $GITHUB_SHA
+              analyze --upload --project-token ${{ secrets.CODACY_PROJECT_TOKEN }} --max-allowed-issues 99999 --commit-uuid $GITHUB_SHA

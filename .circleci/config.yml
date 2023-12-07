@@ -1,0 +1,38 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:8.0
+    environment:
+      # Define your CODACY_PROJECT_TOKEN here or in CircleCI environment variables
+      CODACY_PROJECT_TOKEN: $CODACY_PROJECT_TOKEN
+    steps:
+      - checkout
+
+      - run:
+          name: Generate coverage XML report
+          command: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+
+      - run:
+          name: Upload coverage report to Codacy
+          command: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ./csdemo.tests/coverage.opencover.xml
+
+      - run:
+          name: Run Codacy Analysis CLI with Docker
+          command: |
+            export CODACY_CODE=$PWD
+            docker run \
+                --rm=true \
+                --env CODACY_CODE="$CODACY_CODE" \
+                --volume /var/run/docker.sock:/var/run/docker.sock \
+                --volume "$CODACY_CODE":"$CODACY_CODE" \
+                --volume /tmp:/tmp \
+                codacy/codacy-analysis-cli \
+                analyze --upload --project-token $CODACY_PROJECT_TOKEN --max-allowed-issues 99999 --commit-uuid $CIRCLE_SHA1
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
