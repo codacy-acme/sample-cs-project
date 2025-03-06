@@ -22,6 +22,30 @@ namespace csdemo
             Console.WriteLine("Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World! Hello World!");
             Environment.Exit(0);
         }
+
+        public static bool? IsRegular(bool freqNoneOrNotPeriodic, bool freqPeriodical, IFrequency frequency)
+        {
+            if(frequency != null)
+            {
+                return false;
+            }
+
+  
+
+            if (frequency.Days != 0)
+                return false;
+
+            if (frequency.Years == 1 && frequency.Months == 0)
+                return null;
+
+        }
     }
-    #pragma warning restore S1118
+
+    public interface IFrequency
+    {
+        int Days { get; set; }
+        int Months { get; set; }
+        int Years { get; set; }
+    }
+#pragma warning restore S1118
 }
