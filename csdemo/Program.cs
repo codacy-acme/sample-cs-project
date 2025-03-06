@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 
 namespace csdemo
 {
-    #pragma warning disable S1118
     class Program
     {
         static void Main(string[] args)
@@ -38,6 +37,8 @@ namespace csdemo
             if (frequency.Years == 1 && frequency.Months == 0)
                 return null;
 
+            return false;
+
         }
     }
 
@@ -47,5 +48,4 @@ namespace csdemo
         int Months { get; set; }
         int Years { get; set; }
     }
-#pragma warning restore S1118
 }
